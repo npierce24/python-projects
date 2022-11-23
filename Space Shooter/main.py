@@ -3,7 +3,6 @@ import os
 import time
 import random
 pygame.font.init()
-pygame.mixer.init()
 
 WIDTH, HEIGHT = 950, 1020
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
