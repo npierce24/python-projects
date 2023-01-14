@@ -14,6 +14,6 @@ def generate_qrcode(text):
     img = qr.make_image(fill_color="black", back_color="white")
     img.save("QRimage001.png")
 
-print("Looking To Generate a QR code for a website!\n")
+print("\nLooking To Generate a QR code for a website!\n")
 url = input("Enter the url: ")
 generate_qrcode(url)
