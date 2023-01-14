@@ -1,2 +1,2 @@
 # python-projects
-All of the python projects I have created so far
+python projects I have created in my free time!
