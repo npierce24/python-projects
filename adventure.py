@@ -1,3 +1,5 @@
+import time
+
 name = input("Hello Traveler, what is your name: ")
 while len(name) <= 2:
     print('Please Enter Something\n')
@@ -19,7 +21,7 @@ elif drink == 'no':
         print("Okay safe travels", name,",goodbye!")
         quit()
 else: 
-    print('Not a valid option, you lose.')
+    print('Not a valid option, try yes or no.')
     quit()
 
 print("There thats better now you look good! I hope you dont mind wearing my clothes")
@@ -30,9 +32,11 @@ if tavern == "yes":
     print("ALRIGHT! you are awesome", name, "cant wait to learn more about your travels!\n")
     print('You arrive at the tavern together..')
     print('')
+    time.sleep(1)
     print('')
+    time.sleep(1)
     print('')
-    print('')
+    time.sleep(1)
     print('')
     print('')
     print('you eventually decide to leave and travel solo again...')
