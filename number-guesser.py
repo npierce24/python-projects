@@ -1,7 +1,8 @@
 import random
+import time
 
 print('¿WELCOME TO THE GAME OF GUESS?')
-top_range = input("Type a number any number: ")
+top_range = input("Type a maximum 1number any number: ")
 
 if top_range.isdigit():
     top_range = int(top_range)
@@ -34,3 +35,13 @@ while True:
 
             
 print('You got it in', guesses, "guesses")
+time.sleep(5)
+print("closing the program in...")
+    time.sleep(1)
+    print("3")
+    time.sleep(1)
+    print("2")
+    time.sleep(1)
+    print("1")
+    time.sleep(1)
+    quit()
