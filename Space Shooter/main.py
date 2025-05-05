@@ -1,10 +1,11 @@
+from gc import get_objects
 import pygame
 import os
 import time
 import random
 pygame.font.init()
 
-WIDTH, HEIGHT = 950, 1020
+WIDTH, HEIGHT = 1550, 950
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Space Shooter')
 
@@ -24,6 +25,7 @@ YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"
 
 #background
 BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
+
 
 class Laser:
     def __init__(self, x, y, img):
@@ -148,8 +150,32 @@ def collide(obj1, obj2):
     offset_y = obj2.y - obj1.y
     return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
 
+def paused(): 
+    global pause
+    font = pygame.font.SysFont("comicsans", 80)
+    pause_text = font.render("Paused", True, (255, 255, 255))
+    continue_text = pygame.font.SysFont("comicsans", 40).render("Press ESC to continue", True, (255, 255, 255))
+    
+    while pause:
+        WIN.blit(BG, (0, 0))
+        WIN.blit(pause_text, (WIDTH/2 - pause_text.get_width()/2, HEIGHT/2 - 100))
+        WIN.blit(continue_text, (WIDTH/2 - continue_text.get_width()/2, HEIGHT/2 + 10))
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                pygame.key.set_repeat(200, 70)  # Delay before repeat, interval between repeats
+                if event.key == pygame.K_ESCAPE:
+                    pause = False
+
+
 def main():
     run = True
+    global pause
+    pause = False
     FPS = 60
     level = 0
     lives = 5
@@ -192,7 +218,8 @@ def main():
     while run:
         clock.tick(FPS)
         redraw_window()
-
+        
+        
         if lives <= 0 or player.health <= 0:
             lost = True
             lost_count += 1
@@ -225,6 +252,9 @@ def main():
             player.y += player_vel
         if keys[pygame.K_SPACE]:
             player.shoot()
+        if keys[pygame.K_ESCAPE] and not pause:
+            pause = True
+            paused()
 
         for enemy in enemies[:]:
             enemy.move(enemy_vel)
