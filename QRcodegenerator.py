@@ -1,5 +1,5 @@
 import qrcode
-
+#***To use this document you may need to install the qrcode module into python. In the terminal you can type "pip install qrcode" to install the module needed to run this program!***#
 def generate_qrcode(text):
 
     qr = qrcode.QRCode(
